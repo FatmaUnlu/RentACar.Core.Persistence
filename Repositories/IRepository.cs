@@ -1,4 +1,6 @@
-﻿using Microsoft.EntityFrameworkCore.Query;
+﻿using Core.Persistence.Dynamic;
+using Core.Persistence.Paging;
+using Microsoft.EntityFrameworkCore.Query;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,27 +20,27 @@ namespace Core.Persistence.Repositories
         bool enableTracking = true
     );
 
-    //Paginate<TEntity> GetList(
-    //    Expression<Func<TEntity, bool>>? predicate = null,
-    //    Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>>? orderBy = null,
-    //    Func<IQueryable<TEntity>, IIncludableQueryable<TEntity, object>>? include = null,
-    //    int index = 0,
-    //    int size = 10,
-    //    bool withDeleted = false,
-    //    bool enableTracking = true
-    //);
+        Paginate<TEntity> GetList(
+            Expression<Func<TEntity, bool>>? predicate = null,
+            Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>>? orderBy = null,
+            Func<IQueryable<TEntity>, IIncludableQueryable<TEntity, object>>? include = null,
+            int index = 0,
+            int size = 10,
+            bool withDeleted = false,
+            bool enableTracking = true
+        );
 
-    //Paginate<TEntity> GetListByDynamic(
-    //    DynamicQuery dynamic,
-    //    Expression<Func<TEntity, bool>>? predicate = null,
-    //    Func<IQueryable<TEntity>, IIncludableQueryable<TEntity, object>>? include = null,
-    //    int index = 0,
-    //    int size = 10,
-    //    bool withDeleted = false,
-    //    bool enableTracking = true
-    //);
+        Paginate<TEntity> GetListByDynamic(
+            DynamicQuery dynamic,
+            Expression<Func<TEntity, bool>>? predicate = null,
+            Func<IQueryable<TEntity>, IIncludableQueryable<TEntity, object>>? include = null,
+            int index = 0,
+            int size = 10,
+            bool withDeleted = false,
+            bool enableTracking = true
+        );
 
-    bool Any(Expression<Func<TEntity, bool>>? predicate = null, bool withDeleted = false, bool enableTracking = true);
+        bool Any(Expression<Func<TEntity, bool>>? predicate = null, bool withDeleted = false, bool enableTracking = true);
     TEntity Add(TEntity entity);
     ICollection<TEntity> AddRange(ICollection<TEntity> entities);
     TEntity Update(TEntity entity);

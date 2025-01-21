@@ -1,4 +1,6 @@
-﻿using Microsoft.EntityFrameworkCore.Query;
+﻿using Core.Persistence.Dynamic;
+using Core.Persistence.Paging;
+using Microsoft.EntityFrameworkCore.Query;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,28 +21,28 @@ namespace Core.Persistence.Repositories
             );
 
 
-        //Task<Paginate<TEntity>> GetListAsync(
-        //    Expression<Func<TEntity, bool>>? predicate = null, //null parametre kullanılmama durumu da olabileceği için
-        //    Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>>? orderBy = null, //orderby yapılabilir.
-        //    Func<IQueryable<TEntity>, IIncludableQueryable<TEntity, object>>? include = null,
-        //    int index = 0,
-        //    int size = 10,
-        //    bool withDeleted = false,
-        //    bool enableTracking = true,
-        //    CancellationToken cancellationToken = default
-        //);
+        Task<Paginate<TEntity>> GetListAsync(
+            Expression<Func<TEntity, bool>>? predicate = null, //null parametre kullanılmama durumu da olabileceği için
+            Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>>? orderBy = null, //orderby yapılabilir.
+            Func<IQueryable<TEntity>, IIncludableQueryable<TEntity, object>>? include = null,
+            int index = 0,
+            int size = 10,
+            bool withDeleted = false,
+            bool enableTracking = true,
+            CancellationToken cancellationToken = default
+        );
 
         //dinamik sorgulama
-        //Task<Paginate<TEntity>> GetListByDynamicAsync(
-        //    DynamicQuery dynamic,
-        //    Expression<Func<TEntity, bool>>? predicate = null,
-        //    Func<IQueryable<TEntity>, IIncludableQueryable<TEntity, object>>? include = null,
-        //    int index = 0,
-        //    int size = 10,
-        //    bool withDeleted = false,
-        //    bool enableTracking = true,
-        //    CancellationToken cancellationToken = default
-        //);
+        Task<Paginate<TEntity>> GetListByDynamicAsync(
+            DynamicQuery dynamic,
+            Expression<Func<TEntity, bool>>? predicate = null,
+            Func<IQueryable<TEntity>, IIncludableQueryable<TEntity, object>>? include = null,
+            int index = 0,
+            int size = 10,
+            bool withDeleted = false,
+            bool enableTracking = true,
+            CancellationToken cancellationToken = default
+        );
         Task<bool> AnyAsync(
            Expression<Func<TEntity, bool>>? predicate = null,
            bool withDeleted = false,
